@@ -19,6 +19,7 @@ const STYLES = `
   .bo{background:transparent;color:var(--ink);border:1.5px solid var(--ink-f)} .bo:hover{border-color:var(--ink);background:var(--parch-d)}
   .bg{background:transparent;color:var(--ink-f);padding:6px 12px} .bg:hover{color:var(--ink);background:var(--parch-d)}
   .bs{padding:6px 13px;font-size:12px}
+  .btn-danger{background:rgba(155,35,53,.1);color:var(--crim);border:1.5px solid rgba(155,35,53,.3)} .btn-danger:hover{background:rgba(155,35,53,.18)}
   .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:24px}
   .sc{background:var(--wht);border:1.5px solid var(--parch-dd);border-radius:var(--rl);padding:18px;text-align:center}
   .sn{font-family:var(--fd);font-size:28px;font-weight:700;line-height:1;margin-bottom:3px}
@@ -54,7 +55,9 @@ const STYLES = `
   .mn{font-family:var(--fm);font-size:10px;color:var(--gold);text-transform:uppercase;letter-spacing:.08em;margin-bottom:5px}
   .mt{font-size:14px;line-height:1.5;color:var(--ink)} .mc.fl .mc-b .mt{color:var(--sap);font-style:italic}
   .mh{font-size:10px;color:var(--ink-f);margin-top:7px}
-  .qsetup{max-width:580px;margin:0 auto} .qlabel{display:block;font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-f);margin-bottom:7px;font-family:var(--fm)} .qgroup{margin-bottom:18px}
+  .qsetup{max-width:580px;margin:0 auto}
+  .qlabel{display:block;font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-f);margin-bottom:7px;font-family:var(--fm)}
+  .qgroup{margin-bottom:18px}
   .qsel{width:100%;padding:10px 14px;background:var(--wht);border:1.5px solid var(--parch-dd);border-radius:var(--r);font-family:var(--fb);font-size:14px;color:var(--ink);cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%234a4a6a' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:36px}
   .qsel:focus{outline:none;border-color:var(--gold)}
   .dg{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
@@ -112,13 +115,23 @@ const STYLES = `
   .todo-p-btn{padding:4px 10px;border-radius:10px;font-size:12px;border:1px solid;cursor:pointer;background:none;transition:all .2s}
   .todo-cat{padding:5px 12px;border-radius:14px;font-size:12px;cursor:pointer;border:1.5px solid var(--parch-dd);background:var(--wht);color:var(--ink-f);transition:all .2s;font-family:var(--fm)}
   .todo-cat.on{border-color:var(--gold);background:var(--gold-p);color:var(--ink)}
-  .progress-section{margin-bottom:20px} .progress-label{display:flex;justify-content:space-between;font-size:12px;color:var(--ink-f);margin-bottom:6px;font-family:var(--fm)}
+  .progress-section{margin-bottom:20px}
+  .progress-label{display:flex;justify-content:space-between;font-size:12px;color:var(--ink-f);margin-bottom:6px;font-family:var(--fm)}
   .progress-track{height:8px;background:var(--parch-dd);border-radius:4px;overflow:hidden}
   .progress-fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--em));border-radius:4px;transition:width .5s ease}
   .score-row{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--parch-dd);font-size:13px} .score-row:last-child{border:none}
-  .score-bar-wrap{flex:1;height:6px;background:var(--parch-dd);border-radius:3px;overflow:hidden} .score-bar{height:100%;background:var(--gold);border-radius:3px}
+  .score-bar-wrap{flex:1;height:6px;background:var(--parch-dd);border-radius:3px;overflow:hidden}
+  .score-bar{height:100%;background:var(--gold);border-radius:3px}
   .score-pct{font-family:var(--fm);font-size:12px;color:var(--ink-f);width:40px;text-align:right}
-  @media(max-width:640px){.main{padding:18px 14px}.stats{grid-template-columns:repeat(2,1fr)}.mg{grid-template-columns:1fr}.dg{grid-template-columns:1fr}.hdr{padding:0 14px}.nav{padding:0 10px}.rtitle{font-size:26px}}
+  .stat-pill{display:inline-flex;align-items:center;gap:5px;padding:3px 10px;border-radius:12px;font-size:11px;font-family:var(--fm)}
+  .stat-good{background:rgba(26,107,74,.1);color:var(--em)} .stat-bad{background:rgba(155,35,53,.1);color:var(--crim)} .stat-meh{background:rgba(201,168,76,.15);color:#7a5c00}
+  .quiz-tabs{display:flex;gap:0;margin-bottom:24px;background:var(--wht);border:1.5px solid var(--parch-dd);border-radius:var(--r);overflow:hidden}
+  .quiz-tab{flex:1;padding:10px;background:none;border:none;font-family:var(--fb);font-size:13px;cursor:pointer;color:var(--ink-f);transition:all .2s;text-align:center}
+  .quiz-tab.on{background:var(--gold-p);color:var(--ink);font-weight:600}
+  .del-row{display:flex;align-items:center;justify-content:space-between;padding:14px 0;border-bottom:1px solid var(--parch-dd);gap:12px;flex-wrap:wrap}
+  .del-row:last-child{border:none}
+  .confirm-box{background:rgba(155,35,53,.05);border:1.5px solid rgba(155,35,53,.2);border-radius:var(--r);padding:14px 18px;margin:8px 0 12px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;font-size:13px}
+  @media(max-width:640px){.main{padding:18px 14px}.stats{grid-template-columns:repeat(2,1fr)}.mg{grid-template-columns:1fr}.dg{grid-template-columns:1fr}.hdr{padding:0 14px}.nav{padding:0 10px}.rtitle{font-size:26px}.del-row{flex-direction:column;align-items:flex-start}}
 `;
 
 function parseFile(content, fileName) {
@@ -130,26 +143,37 @@ function parseFile(content, fileName) {
 }
 
 function updateSM2(prev = {}, correct) {
-  return { factor: correct ? Math.min(1,(prev.factor??.5)+.1) : Math.max(0,(prev.factor??.5)-.2), correct:(prev.correct??0)+(correct?1:0), total:(prev.total??0)+1, lastSeen:Date.now() };
+  return {
+    factor: correct ? Math.min(1, (prev.factor ?? .5) + .1) : Math.max(0, (prev.factor ?? .5) - .2),
+    correct: (prev.correct ?? 0) + (correct ? 1 : 0),
+    total: (prev.total ?? 0) + 1,
+    lastSeen: Date.now()
+  };
 }
 
 const KEY = "culturemaster_v3";
-function fresh() { return { lessons:[], read:{}, scores:{}, streak:0, lastStudyDay:null, todoItems:[], quizHistory:[], notes:{} }; }
+function fresh() { return { lessons: [], read: {}, scores: {}, streak: 0, lastStudyDay: null, todoItems: [], quizHistory: [], notes: {} }; }
 function loadData() { try { return JSON.parse(localStorage.getItem(KEY)) ?? fresh(); } catch { return fresh(); } }
 function saveData(d) { try { localStorage.setItem(KEY, JSON.stringify(d)); } catch {} }
 
 function exportProgress(data) {
-  const payload = { version:3, exportedAt:new Date().toISOString(), read:data.read, scores:data.scores, streak:data.streak, lastStudyDay:data.lastStudyDay, todoItems:data.todoItems, quizHistory:data.quizHistory, notes:data.notes, lessonSources:[...new Set(data.lessons.map(l=>l._source))] };
-  const blob = new Blob([JSON.stringify(payload, null, 2)], {type:"application/json"});
+  const payload = {
+    version: 3, exportedAt: new Date().toISOString(),
+    read: data.read, scores: data.scores, streak: data.streak,
+    lastStudyDay: data.lastStudyDay, todoItems: data.todoItems,
+    quizHistory: data.quizHistory, notes: data.notes
+  };
+  const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
   const url = URL.createObjectURL(blob);
-  const a = document.createElement("a"); a.href=url; a.download=`culturemaster_progression_${new Date().toISOString().slice(0,10)}.json`; a.click();
+  const a = document.createElement("a");
+  a.href = url; a.download = `culturemaster_progression_${new Date().toISOString().slice(0, 10)}.json`; a.click();
   URL.revokeObjectURL(url);
 }
 
 function importProgress(content, currentData) {
   const p = JSON.parse(content);
   if (!p.version || !p.read) throw new Error("Fichier invalide.");
-  return { ...currentData, read:p.read??{}, scores:p.scores??{}, streak:p.streak??0, lastStudyDay:p.lastStudyDay??null, todoItems:p.todoItems??[], quizHistory:p.quizHistory??[], notes:p.notes??{} };
+  return { ...currentData, read: p.read ?? {}, scores: p.scores ?? {}, streak: p.streak ?? 0, lastStudyDay: p.lastStudyDay ?? null, todoItems: p.todoItems ?? [], quizHistory: p.quizHistory ?? [], notes: p.notes ?? {} };
 }
 
 function Toast({ msg, onDone }) {
@@ -157,89 +181,114 @@ function Toast({ msg, onDone }) {
   return <div className="toast">{msg}</div>;
 }
 
-function ImportZone({ onImport }) {
-  const [drag, setDrag] = useState(false); const ref = useRef();
-  const handle = f => { if (!f || !f.name.endsWith(".txt")) return; const r = new FileReader(); r.onload = e => onImport(e.target.result, f.name); r.readAsText(f); };
-  return (
-    <div className={`izone${drag?" on":""}`} onDragOver={e=>{e.preventDefault();setDrag(true)}} onDragLeave={()=>setDrag(false)} onDrop={e=>{e.preventDefault();setDrag(false);handle(e.dataTransfer.files[0])}} onClick={()=>ref.current?.click()}>
-      <input ref={ref} type="file" accept=".txt" style={{display:"none"}} onChange={e=>handle(e.target.files[0])} />
-      <div style={{fontSize:"38px",marginBottom:"10px"}}>📂</div>
-      <h3>Glissez un fichier .txt ici</h3>
-      <p>ou cliquez pour parcourir</p>
-    </div>
-  );
-}
-
 function NoteEditor({ lessonId, notes, onChange }) {
   const [editing, setEditing] = useState(false);
   const [val, setVal] = useState(notes[lessonId] ?? "");
   const save = () => { onChange(lessonId, val); setEditing(false); };
   if (!editing) return (
-    <div style={{marginTop:"18px"}}>
-      <div style={{fontSize:"12px",fontFamily:"var(--fm)",textTransform:"uppercase",letterSpacing:".06em",color:"var(--ink-f)",marginBottom:"8px"}}>📝 Mes notes</div>
-      <div onClick={()=>setEditing(true)} style={{padding:"12px 16px",background:"var(--gold-p)",border:"1.5px dashed rgba(201,168,76,.5)",borderRadius:"var(--r)",cursor:"pointer",fontSize:"14px",color:val?"var(--ink)":"var(--ink-f)",minHeight:"60px",lineHeight:"1.6",whiteSpace:"pre-wrap"}}>
+    <div style={{ marginTop: "18px" }}>
+      <div style={{ fontSize: "12px", fontFamily: "var(--fm)", textTransform: "uppercase", letterSpacing: ".06em", color: "var(--ink-f)", marginBottom: "8px" }}>📝 Mes notes</div>
+      <div onClick={() => setEditing(true)} style={{ padding: "12px 16px", background: "var(--gold-p)", border: "1.5px dashed rgba(201,168,76,.5)", borderRadius: "var(--r)", cursor: "pointer", fontSize: "14px", color: val ? "var(--ink)" : "var(--ink-f)", minHeight: "60px", lineHeight: "1.6", whiteSpace: "pre-wrap" }}>
         {val || "Cliquez pour ajouter vos notes personnelles sur cette leçon…"}
       </div>
     </div>
   );
   return (
-    <div style={{marginTop:"18px"}}>
-      <div style={{fontSize:"12px",fontFamily:"var(--fm)",textTransform:"uppercase",letterSpacing:".06em",color:"var(--ink-f)",marginBottom:"8px"}}>📝 Mes notes</div>
-      <textarea autoFocus value={val} onChange={e=>setVal(e.target.value)} placeholder="Vos notes, associations d'idées, points à retenir…" style={{width:"100%",minHeight:"120px",padding:"12px 16px",background:"var(--wht)",border:"1.5px solid var(--gold)",borderRadius:"var(--r)",fontFamily:"var(--fb)",fontSize:"14px",color:"var(--ink)",resize:"vertical",lineHeight:"1.7",outline:"none"}} />
-      <div style={{display:"flex",gap:"8px",marginTop:"8px"}}>
+    <div style={{ marginTop: "18px" }}>
+      <div style={{ fontSize: "12px", fontFamily: "var(--fm)", textTransform: "uppercase", letterSpacing: ".06em", color: "var(--ink-f)", marginBottom: "8px" }}>📝 Mes notes</div>
+      <textarea autoFocus value={val} onChange={e => setVal(e.target.value)} placeholder="Vos notes, associations d'idées, points à retenir…" style={{ width: "100%", minHeight: "120px", padding: "12px 16px", background: "var(--wht)", border: "1.5px solid var(--gold)", borderRadius: "var(--r)", fontFamily: "var(--fb)", fontSize: "14px", color: "var(--ink)", resize: "vertical", lineHeight: "1.7", outline: "none" }} />
+      <div style={{ display: "flex", gap: "8px", marginTop: "8px" }}>
         <button className="btn bp bs" onClick={save}>💾 Sauvegarder</button>
-        <button className="btn bg bs" onClick={()=>{setVal(notes[lessonId]??"");setEditing(false);}}>Annuler</button>
+        <button className="btn bg bs" onClick={() => { setVal(notes[lessonId] ?? ""); setEditing(false); }}>Annuler</button>
       </div>
     </div>
   );
 }
 
+// ── FEATURE 3 : progress bar scoped to active file filter ──────────────────
 function LearnTab({ lessons, read, notes, onMarkRead, onImport, onNoteChange }) {
   const [activeFile, setActiveFile] = useState("all");
   const [reading, setReading] = useState(null);
-  const files = [...new Set(lessons.map(l=>l._source))];
-  const filtered = activeFile==="all" ? lessons : lessons.filter(l=>l._source===activeFile);
-  const readCount = Object.keys(read).length;
+  const files = [...new Set(lessons.map(l => l._source))];
+  const filtered = activeFile === "all" ? lessons : lessons.filter(l => l._source === activeFile);
+  const scopedTotal = filtered.length;
+  const scopedRead = filtered.filter(l => !!read[l.ID]).length;
+  const totalRead = Object.keys(read).length;
 
   if (reading) {
-    const lesson = lessons.find(l=>l.ID===reading);
+    const lesson = lessons.find(l => l.ID === reading);
     if (!lesson) { setReading(null); return null; }
     const paragraphs = lesson.Contenu.split("\n\n").filter(Boolean);
     return (
       <div className="reader">
-        <div className="bc"><span className="bl" onClick={()=>setReading(null)}>← Bibliothèque</span><span>›</span><span>{lesson._source?.replace(".txt","").replace(/_/g," ")}</span></div>
+        <div className="bc"><span className="bl" onClick={() => setReading(null)}>← Bibliothèque</span><span>›</span><span>{lesson._source?.replace(".txt", "").replace(/_/g, " ")}</span></div>
         <h1 className="rtitle">{lesson.Titre}</h1>
         <div className="rack">
-          {read[lesson.ID] ? <span className="rbadge">✓ Leçon lue</span> : <button className="btn bp" onClick={()=>onMarkRead(lesson.ID)}>✓ Marquer comme lue</button>}
-          <span style={{padding:"5px 11px",borderRadius:"12px",fontSize:"11px",fontFamily:"var(--fm)",background:"rgba(201,168,76,.12)",color:"#8a6a10",border:"1px solid rgba(201,168,76,.3)"}}>{lesson.Memo?.length} points clés · {lesson.Quiz?.length} questions</span>
+          {read[lesson.ID] ? <span className="rbadge">✓ Leçon lue</span> : <button className="btn bp" onClick={() => onMarkRead(lesson.ID)}>✓ Marquer comme lue</button>}
+          <span style={{ padding: "5px 11px", borderRadius: "12px", fontSize: "11px", fontFamily: "var(--fm)", background: "rgba(201,168,76,.12)", color: "#8a6a10", border: "1px solid rgba(201,168,76,.3)" }}>{lesson.Memo?.length} points clés · {lesson.Quiz?.length} questions</span>
         </div>
-        <div className="rbody">{paragraphs.map((p,i)=><p key={i}>{p}</p>)}</div>
+        <div className="rbody">{paragraphs.map((p, i) => <p key={i}>{p}</p>)}</div>
         <NoteEditor lessonId={lesson.ID} notes={notes} onChange={onNoteChange} />
       </div>
     );
   }
 
-  if (lessons.length===0) return (
-    <div className="empty"><div className="empty-icon">📚</div><h2>Votre bibliothèque est vide</h2><p>Importez un fichier <code>.txt</code> de leçons pour commencer.</p><ImportZone onImport={onImport} /></div>
+  if (lessons.length === 0) return (
+    <div className="empty">
+      <div className="empty-icon">📚</div><h2>Votre bibliothèque est vide</h2>
+      <p>Importez un fichier <code>.txt</code> de leçons pour commencer.</p>
+      <div className="izone" onClick={() => document.getElementById('learn-import')?.click()}>
+        <input id="learn-import" type="file" accept=".txt" multiple style={{ display: "none" }} onChange={e => { Array.from(e.target.files).forEach(f => { const r = new FileReader(); r.onload = ev => onImport(ev.target.result, f.name); r.readAsText(f); }); e.target.value = ""; }} />
+        <div style={{ fontSize: "38px", marginBottom: "10px" }}>📂</div>
+        <h3>Glissez un fichier .txt ici</h3><p>ou cliquez pour parcourir</p>
+      </div>
+    </div>
   );
+
+  const progressLabel = activeFile === "all"
+    ? "Avancement global"
+    : `Avancement — ${activeFile.replace(".txt", "").replace(/_/g, " ")}`;
 
   return (
     <div>
       <div className="ibar">
-        <span>📂 {lessons.length} leçon{lessons.length>1?"s":""} · {readCount} lue{readCount>1?"s":""}</span>
-        <label className="btn bo bs" style={{cursor:"pointer"}}>+ Importer<input type="file" accept=".txt" multiple style={{display:"none"}} onChange={e=>{Array.from(e.target.files).forEach(f=>{const r=new FileReader();r.onload=ev=>onImport(ev.target.result,f.name);r.readAsText(f)});e.target.value=""}} /></label>
+        <span>📂 {lessons.length} leçon{lessons.length > 1 ? "s" : ""} · {totalRead} lue{totalRead > 1 ? "s" : ""}</span>
+        <label className="btn bo bs" style={{ cursor: "pointer" }}>+ Importer
+          <input type="file" accept=".txt" multiple style={{ display: "none" }} onChange={e => { Array.from(e.target.files).forEach(f => { const r = new FileReader(); r.onload = ev => onImport(ev.target.result, f.name); r.readAsText(f); }); e.target.value = ""; }} />
+        </label>
       </div>
       <div className="stats">
-        <div className="sc"><div className="sn">{lessons.length}</div><div className="sl">Leçons</div></div>
-        <div className="sc"><div className="sn" style={{color:"var(--em)"}}>{readCount}</div><div className="sl">Lues</div></div>
-        <div className="sc"><div className="sn">{lessons.length>0?Math.round((readCount/lessons.length)*100):0}%</div><div className="sl">Progression</div></div>
+        <div className="sc"><div className="sn">{scopedTotal}</div><div className="sl">{activeFile === "all" ? "Total" : "Dans ce groupe"}</div></div>
+        <div className="sc"><div className="sn" style={{ color: "var(--em)" }}>{scopedRead}</div><div className="sl">Lues</div></div>
+        <div className="sc"><div className="sn">{scopedTotal > 0 ? Math.round((scopedRead / scopedTotal) * 100) : 0}%</div><div className="sl">Progression</div></div>
       </div>
-      {lessons.length>0 && (<div className="progress-section"><div className="progress-label"><span>Avancement global</span><span>{readCount}/{lessons.length}</span></div><div className="progress-track"><div className="progress-fill" style={{width:`${lessons.length?(readCount/lessons.length)*100:0}%`}} /></div></div>)}
-      {files.length>1 && (<div className="chips"><div className={`chip ${activeFile==="all"?"on":""}`} onClick={()=>setActiveFile("all")}>📚 Tout <span className="chip-n">{lessons.length}</span></div>{files.map(f=><div key={f} className={`chip ${activeFile===f?"on":""}`} onClick={()=>setActiveFile(f)}>{f.replace(".txt","").replace(/_/g," ")}<span className="chip-n">{lessons.filter(l=>l._source===f).length}</span></div>)}</div>)}
+      {/* Scoped progress bar — updates with active file filter */}
+      {scopedTotal > 0 && (
+        <div className="progress-section">
+          <div className="progress-label"><span>{progressLabel}</span><span>{scopedRead}/{scopedTotal}</span></div>
+          <div className="progress-track"><div className="progress-fill" style={{ width: `${(scopedRead / scopedTotal) * 100}%` }} /></div>
+        </div>
+      )}
+      {files.length > 1 && (
+        <div className="chips">
+          <div className={`chip ${activeFile === "all" ? "on" : ""}`} onClick={() => setActiveFile("all")}>📚 Tout <span className="chip-n">{lessons.length}</span></div>
+          {files.map(f => <div key={f} className={`chip ${activeFile === f ? "on" : ""}`} onClick={() => setActiveFile(f)}>{f.replace(".txt", "").replace(/_/g, " ")}<span className="chip-n">{lessons.filter(l => l._source === f).length}</span></div>)}
+        </div>
+      )}
       <div className="lg">
-        {filtered.map(l=>{
-          const isRead=!!read[l.ID]; const hasNote=!!notes[l.ID];
-          return (<div key={l.ID} className={`lc ${isRead?"rd":""}`} onClick={()=>setReading(l.ID)}><div className={`lst ${isRead?"ok":""}`}>{isRead?"✓":"○"}</div><div className="li"><div className="lid">{l.ID} · {l._source?.replace(".txt","").replace(/_/g," ")}</div><div className="lt">{l.Titre}</div><div className="lm">{l.Memo?.length??0} points clés · {l.Quiz?.length??0} questions{hasNote?" · 📝 note":""}</div></div>{isRead&&<span className="tag">✓</span>}</div>);
+        {filtered.map(l => {
+          const isRead = !!read[l.ID]; const hasNote = !!notes[l.ID];
+          return (
+            <div key={l.ID} className={`lc ${isRead ? "rd" : ""}`} onClick={() => setReading(l.ID)}>
+              <div className={`lst ${isRead ? "ok" : ""}`}>{isRead ? "✓" : "○"}</div>
+              <div className="li">
+                <div className="lid">{l.ID} · {l._source?.replace(".txt", "").replace(/_/g, " ")}</div>
+                <div className="lt">{l.Titre}</div>
+                <div className="lm">{l.Memo?.length ?? 0} points clés · {l.Quiz?.length ?? 0} questions{hasNote ? " · 📝 note" : ""}</div>
+              </div>
+              {isRead && <span className="tag">✓</span>}
+            </div>
+          );
         })}
       </div>
     </div>
@@ -249,24 +298,162 @@ function LearnTab({ lessons, read, notes, onMarkRead, onImport, onNoteChange }) 
 function ReviseTab({ lessons }) {
   const [activeLesson, setActiveLesson] = useState(null);
   const [flipped, setFlipped] = useState({});
-  if (lessons.length===0) return (<div className="empty"><div className="empty-icon">🃏</div><h2>Aucune leçon chargée</h2><p>Importez des leçons depuis l'onglet Apprendre.</p></div>);
-  const lesson = activeLesson ? lessons.find(l=>l.ID===activeLesson) : null;
-  if (!lesson) return (<><h2 className="stitle">Révision par fiches</h2><p className="ssub">Choisissez une leçon pour réviser ses points clés.</p><div className="lg">{lessons.map(l=>(<div key={l.ID} className="lc" onClick={()=>{setActiveLesson(l.ID);setFlipped({})}}><div className="lst">🃏</div><div className="li"><div className="lid">{l.ID}</div><div className="lt">{l.Titre}</div><div className="lm">{l.Memo?.length??0} fiches</div></div></div>))}</div></>);
+  if (lessons.length === 0) return (<div className="empty"><div className="empty-icon">🃏</div><h2>Aucune leçon chargée</h2><p>Importez des leçons depuis l'onglet Apprendre.</p></div>);
+  const lesson = activeLesson ? lessons.find(l => l.ID === activeLesson) : null;
+  if (!lesson) return (
+    <>
+      <h2 className="stitle">Révision par fiches</h2>
+      <p className="ssub">Choisissez une leçon pour réviser ses points clés.</p>
+      <div className="lg">{lessons.map(l => (<div key={l.ID} className="lc" onClick={() => { setActiveLesson(l.ID); setFlipped({}); }}><div className="lst">🃏</div><div className="li"><div className="lid">{l.ID}</div><div className="lt">{l.Titre}</div><div className="lm">{l.Memo?.length ?? 0} fiches</div></div></div>))}</div>
+    </>
+  );
   return (
     <>
-      <div className="bc"><span className="bl" onClick={()=>setActiveLesson(null)}>← Retour</span><span>›</span><span>{lesson.Titre}</span></div>
+      <div className="bc"><span className="bl" onClick={() => setActiveLesson(null)}>← Retour</span><span>›</span><span>{lesson.Titre}</span></div>
       <h2 className="stitle">{lesson.Titre}</h2><p className="ssub">{lesson.Memo?.length} points clés · Cliquez pour retourner</p>
-      <div className="mg">{(lesson.Memo??[]).map((item,i)=>(<div key={i} className={`mc ${flipped[i]?"fl":""}`} onClick={()=>setFlipped(f=>({...f,[i]:!f[i]}))}><div className="mc-inner"><div className="mc-f"><div className="mn">Point {i+1}/{lesson.Memo.length}</div><div className="mt">{item}</div><div className="mh">Cliquer pour retourner ↻</div></div><div className="mc-b"><div className="mn">📖 {lesson.Titre}</div><div className="mt">{item}</div></div></div></div>))}</div>
-      <div style={{marginTop:"22px",display:"flex",gap:"10px"}}><button className="btn bo" onClick={()=>setFlipped({})}>Réinitialiser</button><button className="btn bg" onClick={()=>setActiveLesson(null)}>← Retour</button></div>
+      <div className="mg">{(lesson.Memo ?? []).map((item, i) => (<div key={i} className={`mc ${flipped[i] ? "fl" : ""}`} onClick={() => setFlipped(f => ({ ...f, [i]: !f[i] }))}><div className="mc-inner"><div className="mc-f"><div className="mn">Point {i + 1}/{lesson.Memo.length}</div><div className="mt">{item}</div><div className="mh">Cliquer pour retourner ↻</div></div><div className="mc-b"><div className="mn">📖 {lesson.Titre}</div><div className="mt">{item}</div></div></div></div>))}</div>
+      <div style={{ marginTop: "22px", display: "flex", gap: "10px" }}><button className="btn bo" onClick={() => setFlipped({})}>Réinitialiser</button><button className="btn bg" onClick={() => setActiveLesson(null)}>← Retour</button></div>
     </>
   );
 }
 
-const DIFF={easy:{label:"Détendu",desc:"4 choix, pas de timer",time:null},normal:{label:"Normal",desc:"4 choix, 30 secondes",time:30},hard:{label:"Expert",desc:"4 choix, 15 secondes",time:15}};
+const DIFF = { easy: { label: "Détendu", desc: "4 choix, pas de timer", time: null }, normal: { label: "Normal", desc: "4 choix, 30 secondes", time: 30 }, hard: { label: "Expert", desc: "4 choix, 15 secondes", time: 15 } };
 
-function QuizTab({ lessons, scores, quizHistory, onUpdateScore, onAddHistory }) {
+// ── FEATURE 4 : Stats view ─────────────────────────────────────────────────
+function StatsView({ lessons, scores, quizHistory }) {
+  const [sortBy, setSortBy] = useState("worst");
+
+  const lessonStats = lessons.map(l => {
+    const qKeys = (l.Quiz ?? []).map(q => `${l.ID}::${q.Texte}`);
+    const answered = qKeys.filter(k => scores[k]?.total > 0);
+    const totalAnswers = answered.reduce((s, k) => s + (scores[k]?.total ?? 0), 0);
+    const totalCorrect = answered.reduce((s, k) => s + (scores[k]?.correct ?? 0), 0);
+    const pct = totalAnswers > 0 ? Math.round((totalCorrect / totalAnswers) * 100) : null;
+    return { id: l.ID, titre: l.Titre, source: l._source, totalQ: l.Quiz?.length ?? 0, answered: answered.length, totalAnswers, totalCorrect, pct };
+  }).filter(s => s.answered > 0);
+
+  const sorted = [...lessonStats].sort((a, b) => {
+    if (sortBy === "worst") return (a.pct ?? 100) - (b.pct ?? 100);
+    if (sortBy === "best") return (b.pct ?? 0) - (a.pct ?? 0);
+    return b.totalAnswers - a.totalAnswers;
+  });
+
+  const questionStats = [];
+  lessons.forEach(l => {
+    (l.Quiz ?? []).forEach(q => {
+      const k = `${l.ID}::${q.Texte}`;
+      const s = scores[k];
+      if (s?.total > 0) questionStats.push({ lesson: l.Titre, texte: q.Texte, total: s.total, correct: s.correct, pct: Math.round((s.correct / s.total) * 100) });
+    });
+  });
+  const worstQs = [...questionStats].sort((a, b) => a.pct - b.pct).slice(0, 8);
+  const bestQs = [...questionStats].sort((a, b) => b.pct - a.pct).slice(0, 5);
+
+  if (lessonStats.length === 0) return (
+    <div className="empty">
+      <div className="empty-icon">📊</div>
+      <h2>Pas encore de statistiques</h2>
+      <p>Faites quelques quiz pour voir votre progression ici.</p>
+    </div>
+  );
+
+  const totalAnswers = questionStats.reduce((s, q) => s + q.total, 0);
+  const totalCorrect = questionStats.reduce((s, q) => s + q.correct, 0);
+  const globalPct = totalAnswers > 0 ? Math.round((totalCorrect / totalAnswers) * 100) : 0;
+
+  return (
+    <div>
+      <h2 className="stitle">📊 Mes Statistiques</h2>
+      <p className="ssub">Vue globale de votre maîtrise par leçon et par question.</p>
+      <div className="stats">
+        <div className="sc"><div className="sn">{totalAnswers}</div><div className="sl">Réponses</div></div>
+        <div className="sc"><div className="sn" style={{ color: globalPct >= 70 ? "var(--em)" : globalPct >= 40 ? "#a07010" : "var(--crim)" }}>{globalPct}%</div><div className="sl">Score global</div></div>
+        <div className="sc"><div className="sn">{lessonStats.length}</div><div className="sl">Leçons testées</div></div>
+      </div>
+
+      {quizHistory.length > 1 && (
+        <div className="panel">
+          <h3>📈 Historique des quiz</h3>
+          <p>Vos dernières sessions</p>
+          {quizHistory.slice(-10).reverse().map((h, i) => (
+            <div key={i} className="score-row">
+              <span style={{ fontSize: "12px", color: "var(--ink-f)", width: "75px", flexShrink: 0 }}>{new Date(h.date).toLocaleDateString("fr")}</span>
+              <span style={{ flex: 1, fontSize: "13px", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{h.scope}</span>
+              <div className="score-bar-wrap"><div className="score-bar" style={{ width: `${Math.round((h.correct / h.total) * 100)}%`, background: Math.round((h.correct / h.total) * 100) >= 70 ? "var(--em)" : Math.round((h.correct / h.total) * 100) >= 40 ? "var(--gold)" : "var(--crim)" }} /></div>
+              <span className="score-pct">{h.correct}/{h.total}</span>
+            </div>
+          ))}
+        </div>
+      )}
+
+      <div className="panel">
+        <h3>📚 Maîtrise par leçon</h3>
+        <div style={{ display: "flex", gap: "8px", marginBottom: "16px", flexWrap: "wrap" }}>
+          {[["worst", "🔴 Plus difficiles"], ["best", "🟢 Mieux maîtrisées"], ["most", "📊 Plus pratiquées"]].map(([k, l]) => (
+            <button key={k} className={`btn bs ${sortBy === k ? "bp" : "bo"}`} onClick={() => setSortBy(k)}>{l}</button>
+          ))}
+        </div>
+        {sorted.map(s => {
+          const color = s.pct >= 70 ? "var(--em)" : s.pct >= 40 ? "var(--gold)" : "var(--crim)";
+          const pill = s.pct >= 70 ? "stat-good" : s.pct >= 40 ? "stat-meh" : "stat-bad";
+          return (
+            <div key={s.id} style={{ padding: "10px 0", borderBottom: "1px solid var(--parch-dd)" }}>
+              <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "6px" }}>
+                <span style={{ fontFamily: "var(--fm)", fontSize: "10px", color: "var(--ink-f)", flexShrink: 0 }}>{s.id}</span>
+                <span style={{ flex: 1, fontSize: "13px", fontWeight: "500", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{s.titre}</span>
+                <span className={`stat-pill ${pill}`}>{s.pct}%</span>
+              </div>
+              <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+                <div className="score-bar-wrap" style={{ height: "8px" }}><div className="score-bar" style={{ width: `${s.pct}%`, background: color }} /></div>
+                <span style={{ fontSize: "11px", fontFamily: "var(--fm)", color: "var(--ink-f)", whiteSpace: "nowrap" }}>{s.totalCorrect}/{s.totalAnswers} · {s.answered}/{s.totalQ} q.</span>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
+      {worstQs.length > 0 && (
+        <div className="panel">
+          <h3>⚠️ Questions les plus ratées</h3>
+          <p>Concentrez vos révisions sur ces points faibles.</p>
+          {worstQs.map((q, i) => (
+            <div key={i} style={{ padding: "12px 0", borderBottom: "1px solid var(--parch-dd)" }}>
+              <div style={{ display: "flex", justifyContent: "space-between", gap: "10px", marginBottom: "6px" }}>
+                <span style={{ fontSize: "13px", flex: 1, lineHeight: "1.4" }}>{q.texte}</span>
+                <span className={`stat-pill ${q.pct >= 50 ? "stat-meh" : "stat-bad"}`}>{q.pct}%</span>
+              </div>
+              <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+                <div className="score-bar-wrap"><div className="score-bar" style={{ width: `${q.pct}%`, background: "var(--crim)" }} /></div>
+                <span style={{ fontSize: "11px", fontFamily: "var(--fm)", color: "var(--ink-f)", whiteSpace: "nowrap" }}>{q.correct}/{q.total}</span>
+              </div>
+              <div style={{ fontSize: "11px", color: "var(--ink-f)", marginTop: "4px", fontStyle: "italic" }}>{q.lesson}</div>
+            </div>
+          ))}
+        </div>
+      )}
+
+      {bestQs.length > 0 && (
+        <div className="panel">
+          <h3>✅ Questions bien maîtrisées</h3>
+          <p>Ces points sont bien acquis.</p>
+          {bestQs.map((q, i) => (
+            <div key={i} style={{ padding: "10px 0", borderBottom: "1px solid var(--parch-dd)", display: "flex", alignItems: "center", gap: "10px" }}>
+              <span className="stat-pill stat-good">{q.pct}%</span>
+              <span style={{ fontSize: "13px", flex: 1 }}>{q.texte}</span>
+              <span style={{ fontSize: "11px", fontFamily: "var(--fm)", color: "var(--ink-f)", whiteSpace: "nowrap" }}>{q.correct}/{q.total}</span>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
+// ── FEATURE 1 : Quiz with "read lessons only" scope ────────────────────────
+function QuizTab({ lessons, read, scores, quizHistory, onUpdateScore, onAddHistory }) {
+  const [quizTab, setQuizTab] = useState("quiz");
   const [phase, setPhase] = useState("setup");
-  const [cfg, setCfg] = useState({scope:"all",lessonId:"",difficulty:"normal"});
+  const [cfg, setCfg] = useState({ scope: "all", lessonId: "", difficulty: "normal" });
   const [questions, setQuestions] = useState([]);
   const [idx, setIdx] = useState(0);
   const [answered, setAnswered] = useState(null);
@@ -274,186 +461,337 @@ function QuizTab({ lessons, scores, quizHistory, onUpdateScore, onAddHistory }) 
   const [timer, setTimer] = useState(null);
   const timerRef = useRef();
 
-  const buildQs = useCallback(()=>{
-    let pool=[];
-    if(cfg.scope==="lesson"&&cfg.lessonId){const l=lessons.find(x=>x.ID===cfg.lessonId);pool=(l?.Quiz??[]).map(q=>({...q,_lesson:l.Titre,_lid:l.ID}));}
-    else{pool=lessons.flatMap(l=>(l.Quiz??[]).map(q=>({...q,_lesson:l.Titre,_lid:l.ID})));}
-    pool.sort((a,b)=>{const sa=scores[`${a._lid}::${a.Texte}`]?.factor??.5;const sb=scores[`${b._lid}::${b.Texte}`]?.factor??.5;return(sa-sb)+(Math.random()-.5)*.2;});
-    return pool.slice(0,Math.min(10,pool.length));
-  },[cfg,lessons,scores]);
+  const readLessons = lessons.filter(l => !!read[l.ID]);
 
-  const start=()=>{const qs=buildQs();if(!qs.length)return;setQuestions(qs);setIdx(0);setAnswered(null);setSession([]);setTimer(DIFF[cfg.difficulty].time);setPhase("playing");};
+  const buildQs = useCallback(() => {
+    let pool = [];
+    if (cfg.scope === "lesson" && cfg.lessonId) {
+      const l = lessons.find(x => x.ID === cfg.lessonId);
+      pool = (l?.Quiz ?? []).map(q => ({ ...q, _lesson: l.Titre, _lid: l.ID }));
+    } else if (cfg.scope === "read") {
+      pool = readLessons.flatMap(l => (l.Quiz ?? []).map(q => ({ ...q, _lesson: l.Titre, _lid: l.ID })));
+    } else {
+      pool = lessons.flatMap(l => (l.Quiz ?? []).map(q => ({ ...q, _lesson: l.Titre, _lid: l.ID })));
+    }
+    pool.sort((a, b) => {
+      const sa = scores[`${a._lid}::${a.Texte}`]?.factor ?? .5;
+      const sb = scores[`${b._lid}::${b.Texte}`]?.factor ?? .5;
+      return (sa - sb) + (Math.random() - .5) * .2;
+    });
+    return pool.slice(0, Math.min(10, pool.length));
+  }, [cfg, lessons, scores, readLessons]);
 
-  useEffect(()=>{
-    if(phase!=="playing"||answered!==null){clearInterval(timerRef.current);return;}
-    const max=DIFF[cfg.difficulty].time; if(!max)return;
+  const start = () => { const qs = buildQs(); if (!qs.length) return; setQuestions(qs); setIdx(0); setAnswered(null); setSession([]); setTimer(DIFF[cfg.difficulty].time); setPhase("playing"); };
+
+  useEffect(() => {
+    if (phase !== "playing" || answered !== null) { clearInterval(timerRef.current); return; }
+    const max = DIFF[cfg.difficulty].time; if (!max) return;
     setTimer(max);
-    timerRef.current=setInterval(()=>setTimer(t=>{if(t<=1){clearInterval(timerRef.current);handleAnswer(-1);return 0;}return t-1;}),1000);
-    return()=>clearInterval(timerRef.current);
-  },[idx,phase,answered]);
+    timerRef.current = setInterval(() => setTimer(t => { if (t <= 1) { clearInterval(timerRef.current); handleAnswer(-1); return 0; } return t - 1; }), 1000);
+    return () => clearInterval(timerRef.current);
+  }, [idx, phase, answered]);
 
-  const handleAnswer=(optIdx)=>{
-    clearInterval(timerRef.current);const q=questions[idx];const correct=optIdx===q.RéponseCorrecte;
-    setAnswered(optIdx);onUpdateScore(`${q._lid}::${q.Texte}`,correct);setSession(s=>[...s,{correct,lesson:q._lesson}]);
+  const handleAnswer = (optIdx) => {
+    clearInterval(timerRef.current);
+    const q = questions[idx]; const correct = optIdx === q.RéponseCorrecte;
+    setAnswered(optIdx); onUpdateScore(`${q._lid}::${q.Texte}`, correct); setSession(s => [...s, { correct, lesson: q._lesson }]);
   };
 
-  const next=()=>{
-    if(idx+1>=questions.length){
-      const c=session.filter(s=>s.correct).length;const t=questions.length;
-      onAddHistory({date:new Date().toISOString(),correct:c,total:t,scope:cfg.scope==="lesson"?(lessons.find(l=>l.ID===cfg.lessonId)?.Titre??"Leçon"):"Global"});
+  const next = () => {
+    if (idx + 1 >= questions.length) {
+      const c = session.filter(s => s.correct).length; const t = questions.length;
+      let scopeLabel = "Toutes les leçons";
+      if (cfg.scope === "lesson") scopeLabel = lessons.find(l => l.ID === cfg.lessonId)?.Titre ?? "Leçon";
+      else if (cfg.scope === "read") scopeLabel = "Leçons lues";
+      onAddHistory({ date: new Date().toISOString(), correct: c, total: t, scope: scopeLabel });
       setPhase("results");
-    }else{setIdx(i=>i+1);setAnswered(null);}
+    } else { setIdx(i => i + 1); setAnswered(null); }
   };
 
-  if(lessons.length===0)return(<div className="empty"><div className="empty-icon">🎯</div><h2>Aucune leçon chargée</h2><p>Importez des leçons pour lancer un quiz.</p></div>);
+  if (lessons.length === 0) return (<div className="empty"><div className="empty-icon">🎯</div><h2>Aucune leçon chargée</h2><p>Importez des leçons pour lancer un quiz.</p></div>);
 
-  if(phase==="results"){
-    const correct=session.filter(s=>s.correct).length;const total=questions.length;const pct=Math.round((correct/total)*100);
-    const msg=pct>=80?"Excellent ! 🏆":pct>=50?"Bon effort ! 📈":"À réviser 💪";
-    return(
-      <div className="res">
-        <div className="rcirc"><div className="rnum">{correct}</div><div className="rdenom">/{total}</div></div>
-        <h2 className="stitle">{msg}</h2><p style={{color:"var(--ink-f)",marginBottom:"16px"}}>{pct}% de réponses correctes</p>
-        {quizHistory.length>0&&(<div style={{marginBottom:"20px"}}><div style={{fontSize:"12px",fontFamily:"var(--fm)",color:"var(--ink-f)",textTransform:"uppercase",letterSpacing:".06em",marginBottom:"10px"}}>Historique récent</div>{quizHistory.slice(-5).reverse().map((h,i)=>(<div key={i} className="score-row"><span style={{fontSize:"12px",color:"var(--ink-f)",width:"80px",flexShrink:0}}>{new Date(h.date).toLocaleDateString("fr")}</span><span style={{flex:1,fontSize:"13px",overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{h.scope}</span><div className="score-bar-wrap"><div className="score-bar" style={{width:`${Math.round((h.correct/h.total)*100)}%`}} /></div><span className="score-pct">{Math.round((h.correct/h.total)*100)}%</span></div>))}</div>)}
-        <div className="rbtns"><button className="btn bp" onClick={start}>Rejouer</button><button className="btn bo" onClick={()=>setPhase("setup")}>Configuration</button></div>
-      </div>
-    );
-  }
-
-  if(phase==="playing"&&questions.length>0){
-    const q=questions[idx];const timeLim=DIFF[cfg.difficulty].time;
-    return(
-      <div className="qview">
-        <div className="qprog"><div className="pb"><div className="pf" style={{width:`${((idx+1)/questions.length)*100}%`}} /></div><div className="pt">{idx+1}/{questions.length}</div>{timeLim&&answered===null&&<div className="timer">⏱ {timer}s</div>}</div>
-        <div className="qcard"><div className="qsrc">{q._lesson}</div><div className="qtext">{q.Texte}</div></div>
-        <div className="og">{q.Options.map((opt,i)=>{let cls="";if(answered!==null){if(i===q.RéponseCorrecte)cls="ok";else if(i===answered)cls="ng";}return(<button key={i} className={`opt ${cls}`} disabled={answered!==null} onClick={()=>handleAnswer(i)}><span className="ol">{String.fromCharCode(65+i)}</span>{opt}</button>);})}</div>
-        {answered!==null&&(<><div className="expl"><strong>📖 Explication</strong>{q.Explication}</div><div style={{marginTop:"14px",textAlign:"right"}}><button className="btn bp" onClick={next}>{idx+1>=questions.length?"Résultats →":"Suivant →"}</button></div></>)}
-      </div>
-    );
-  }
-
-  const withQuiz=lessons.filter(l=>l.Quiz?.length>0);
-  return(
-    <div className="qsetup">
-      <h2 className="stitle">Configuration du Quiz</h2>
-      <div className="qgroup"><label className="qlabel">Périmètre</label><select className="qsel" value={cfg.scope} onChange={e=>setCfg(c=>({...c,scope:e.target.value,lessonId:""}))}>><option value="all">Toutes les leçons</option><option value="lesson">Une leçon spécifique</option></select></div>
-      {cfg.scope==="lesson"&&(<div className="qgroup"><label className="qlabel">Leçon</label><select className="qsel" value={cfg.lessonId} onChange={e=>setCfg(c=>({...c,lessonId:e.target.value}))}><option value="">— Choisir —</option>{withQuiz.map(l=><option key={l.ID} value={l.ID}>{l.Titre} ({l.Quiz.length} q.)</option>)}</select></div>)}
-      <div className="qgroup"><label className="qlabel">Difficulté</label><div className="dg">{Object.entries(DIFF).map(([key,d])=>(<div key={key} className={`db ${cfg.difficulty===key?"on":""}`} onClick={()=>setCfg(c=>({...c,difficulty:key}))}><strong>{d.label}</strong><span>{d.desc}</span></div>))}</div></div>
-      <hr className="divider" /><p style={{fontSize:"13px",color:"var(--ink-f)",marginBottom:"16px"}}>💡 Les questions les plus souvent ratées apparaissent en priorité (algorithme SM-2).</p>
-      <button className="btn bp" style={{width:"100%",justifyContent:"center",padding:"13px",fontSize:"15px"}} onClick={start} disabled={cfg.scope==="lesson"&&!cfg.lessonId}>Lancer le Quiz →</button>
+  const tabBar = (phase === "setup" || phase === "results") ? (
+    <div className="quiz-tabs">
+      <button className={`quiz-tab ${quizTab === "quiz" ? "on" : ""}`} onClick={() => { setQuizTab("quiz"); setPhase("setup"); }}>🎯 Quiz</button>
+      <button className={`quiz-tab ${quizTab === "stats" ? "on" : ""}`} onClick={() => setQuizTab("stats")}>📊 Statistiques</button>
     </div>
+  ) : null;
+
+  if (quizTab === "stats" && phase !== "playing") return (
+    <>{tabBar}<StatsView lessons={lessons} scores={scores} quizHistory={quizHistory} /></>
+  );
+
+  if (phase === "results") {
+    const correct = session.filter(s => s.correct).length; const total = questions.length; const pct = Math.round((correct / total) * 100);
+    const msg = pct >= 80 ? "Excellent ! 🏆" : pct >= 50 ? "Bon effort ! 📈" : "À réviser 💪";
+    return (
+      <>
+        {tabBar}
+        <div className="res">
+          <div className="rcirc"><div className="rnum">{correct}</div><div className="rdenom">/{total}</div></div>
+          <h2 className="stitle">{msg}</h2><p style={{ color: "var(--ink-f)", marginBottom: "16px" }}>{pct}% de réponses correctes</p>
+          {quizHistory.length > 0 && (<div style={{ marginBottom: "20px" }}><div style={{ fontSize: "12px", fontFamily: "var(--fm)", color: "var(--ink-f)", textTransform: "uppercase", letterSpacing: ".06em", marginBottom: "10px" }}>Historique récent</div>{quizHistory.slice(-5).reverse().map((h, i) => (<div key={i} className="score-row"><span style={{ fontSize: "12px", color: "var(--ink-f)", width: "80px", flexShrink: 0 }}>{new Date(h.date).toLocaleDateString("fr")}</span><span style={{ flex: 1, fontSize: "13px", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{h.scope}</span><div className="score-bar-wrap"><div className="score-bar" style={{ width: `${Math.round((h.correct / h.total) * 100)}%` }} /></div><span className="score-pct">{Math.round((h.correct / h.total) * 100)}%</span></div>))}</div>)}
+          <div className="rbtns">
+            <button className="btn bp" onClick={start}>Rejouer</button>
+            <button className="btn bo" onClick={() => setPhase("setup")}>Configuration</button>
+            <button className="btn bg" onClick={() => setQuizTab("stats")}>📊 Voir les stats</button>
+          </div>
+        </div>
+      </>
+    );
+  }
+
+  if (phase === "playing" && questions.length > 0) {
+    const q = questions[idx]; const timeLim = DIFF[cfg.difficulty].time;
+    return (
+      <div className="qview">
+        <div className="qprog"><div className="pb"><div className="pf" style={{ width: `${((idx + 1) / questions.length) * 100}%` }} /></div><div className="pt">{idx + 1}/{questions.length}</div>{timeLim && answered === null && <div className="timer">⏱ {timer}s</div>}</div>
+        <div className="qcard"><div className="qsrc">{q._lesson}</div><div className="qtext">{q.Texte}</div></div>
+        <div className="og">{q.Options.map((opt, i) => { let cls = ""; if (answered !== null) { if (i === q.RéponseCorrecte) cls = "ok"; else if (i === answered) cls = "ng"; } return (<button key={i} className={`opt ${cls}`} disabled={answered !== null} onClick={() => handleAnswer(i)}><span className="ol">{String.fromCharCode(65 + i)}</span>{opt}</button>); })}</div>
+        {answered !== null && (<><div className="expl"><strong>📖 Explication</strong>{q.Explication}</div><div style={{ marginTop: "14px", textAlign: "right" }}><button className="btn bp" onClick={next}>{idx + 1 >= questions.length ? "Résultats →" : "Suivant →"}</button></div></>)}
+      </div>
+    );
+  }
+
+  const withQuiz = lessons.filter(l => l.Quiz?.length > 0);
+  const readWithQuiz = readLessons.filter(l => l.Quiz?.length > 0);
+  const canStart = (cfg.scope === "lesson" && !cfg.lessonId) || (cfg.scope === "read" && readWithQuiz.length === 0);
+
+  return (
+    <>
+      {tabBar}
+      <div className="qsetup">
+        <h2 className="stitle">Configuration du Quiz</h2>
+        <div className="qgroup">
+          <label className="qlabel">Périmètre</label>
+          <select className="qsel" value={cfg.scope} onChange={e => setCfg(c => ({ ...c, scope: e.target.value, lessonId: "" }))}>
+            <option value="all">Toutes les leçons ({withQuiz.length} avec quiz)</option>
+            <option value="read">Leçons lues seulement ({readWithQuiz.length} avec quiz)</option>
+            <option value="lesson">Une leçon spécifique</option>
+          </select>
+          {cfg.scope === "read" && readWithQuiz.length === 0 && (
+            <div style={{ marginTop: "8px", padding: "10px 14px", background: "rgba(155,35,53,.06)", border: "1px solid rgba(155,35,53,.2)", borderRadius: "var(--r)", fontSize: "13px", color: "var(--crim)" }}>
+              ⚠️ Aucune leçon lue avec des questions. Lisez d'abord des leçons dans l'onglet Apprendre.
+            </div>
+          )}
+          {cfg.scope === "read" && readWithQuiz.length > 0 && (
+            <div style={{ marginTop: "8px", padding: "10px 14px", background: "rgba(26,107,74,.06)", border: "1px solid rgba(26,107,74,.2)", borderRadius: "var(--r)", fontSize: "13px", color: "var(--em)" }}>
+              ✓ {readWithQuiz.length} leçon{readWithQuiz.length > 1 ? "s" : ""} lue{readWithQuiz.length > 1 ? "s" : ""} avec des questions disponibles.
+            </div>
+          )}
+        </div>
+        {cfg.scope === "lesson" && (<div className="qgroup"><label className="qlabel">Leçon</label><select className="qsel" value={cfg.lessonId} onChange={e => setCfg(c => ({ ...c, lessonId: e.target.value }))}><option value="">— Choisir —</option>{withQuiz.map(l => <option key={l.ID} value={l.ID}>{l.Titre} ({l.Quiz.length} q.)</option>)}</select></div>)}
+        <div className="qgroup"><label className="qlabel">Difficulté</label><div className="dg">{Object.entries(DIFF).map(([key, d]) => (<div key={key} className={`db ${cfg.difficulty === key ? "on" : ""}`} onClick={() => setCfg(c => ({ ...c, difficulty: key }))}><strong>{d.label}</strong><span>{d.desc}</span></div>))}</div></div>
+        <hr className="divider" />
+        <p style={{ fontSize: "13px", color: "var(--ink-f)", marginBottom: "16px" }}>💡 Les questions les plus souvent ratées apparaissent en priorité (algorithme SM-2).</p>
+        <button className="btn bp" style={{ width: "100%", justifyContent: "center", padding: "13px", fontSize: "15px" }} onClick={start} disabled={canStart}>Lancer le Quiz →</button>
+      </div>
+    </>
   );
 }
 
-const CATS=["📚 Histoire","🌍 Géographie","🧬 Sciences","🎨 Culture","💡 Idée","⚡ Urgent"];
-const PRIOS=[{key:"high",label:"🔴 Haute",color:"var(--crim)"},{key:"medium",label:"🟡 Normale",color:"#a07010"},{key:"low",label:"🟢 Basse",color:"var(--em)"}];
+const CATS = ["📚 Histoire", "🌍 Géographie", "🧬 Sciences", "🎨 Culture", "💡 Idée", "⚡ Urgent"];
+const PRIOS = [{ key: "high", label: "🔴 Haute", color: "var(--crim)" }, { key: "medium", label: "🟡 Normale", color: "#a07010" }, { key: "low", label: "🟢 Basse", color: "var(--em)" }];
 
 function TodoTab({ items, onUpdate }) {
-  const [input, setInput] = useState("");
-  const [prio, setPrio] = useState("medium");
-  const [cat, setCat] = useState("");
-  const [filter, setFilter] = useState("all");
-
-  const add=()=>{if(!input.trim())return;onUpdate([{id:Date.now(),text:input.trim(),done:false,priority:prio,category:cat,createdAt:new Date().toISOString()},...items]);setInput("");};
-  const toggle=id=>onUpdate(items.map(i=>i.id===id?{...i,done:!i.done}:i));
-  const del=id=>onUpdate(items.filter(i=>i.id!==id));
-  const filtered=filter==="all"?items:filter==="done"?items.filter(i=>i.done):filter==="todo"?items.filter(i=>!i.done):items.filter(i=>i.category===filter);
-  const doneCount=items.filter(i=>i.done).length;
-
-  return(
+  const [input, setInput] = useState(""); const [prio, setPrio] = useState("medium"); const [cat, setCat] = useState(""); const [filter, setFilter] = useState("all");
+  const add = () => { if (!input.trim()) return; onUpdate([{ id: Date.now(), text: input.trim(), done: false, priority: prio, category: cat, createdAt: new Date().toISOString() }, ...items]); setInput(""); };
+  const toggle = id => onUpdate(items.map(i => i.id === id ? { ...i, done: !i.done } : i));
+  const del = id => onUpdate(items.filter(i => i.id !== id));
+  const filtered = filter === "all" ? items : filter === "done" ? items.filter(i => i.done) : filter === "todo" ? items.filter(i => !i.done) : items.filter(i => i.category === filter);
+  const doneCount = items.filter(i => i.done).length;
+  return (
     <div>
       <h2 className="stitle">💡 Idées de leçons</h2>
       <p className="ssub">Notez vos idées de leçons à créer, sujets à explorer ou rappels de révision.</p>
       <div className="panel">
-        <h3 style={{marginBottom:"12px",fontFamily:"var(--fd)",fontSize:"16px"}}>Nouvelle idée</h3>
-        <div className="todo-input-row"><input className="todo-input" value={input} onChange={e=>setInput(e.target.value)} onKeyDown={e=>e.key==="Enter"&&add()} placeholder="Ex: Leçon sur la Renaissance italienne…" /><button className="btn bp" onClick={add} disabled={!input.trim()}>Ajouter</button></div>
-        <div style={{display:"flex",gap:"16px",flexWrap:"wrap"}}>
-          <div><div style={{fontSize:"11px",fontFamily:"var(--fm)",color:"var(--ink-f)",textTransform:"uppercase",letterSpacing:".06em",marginBottom:"6px"}}>Priorité</div><div style={{display:"flex",gap:"6px"}}>{PRIOS.map(p=>(<button key={p.key} className="todo-p-btn" style={{borderColor:p.color,color:prio===p.key?"#fff":p.color,background:prio===p.key?p.color:"transparent"}} onClick={()=>setPrio(p.key)}>{p.label}</button>))}</div></div>
-          <div><div style={{fontSize:"11px",fontFamily:"var(--fm)",color:"var(--ink-f)",textTransform:"uppercase",letterSpacing:".06em",marginBottom:"6px"}}>Catégorie</div><div style={{display:"flex",gap:"5px",flexWrap:"wrap"}}>{CATS.map(c=>(<button key={c} className={`todo-cat ${cat===c?"on":""}`} onClick={()=>setCat(cat===c?"":c)}>{c}</button>))}</div></div>
+        <h3 style={{ marginBottom: "12px", fontSize: "16px" }}>Nouvelle idée</h3>
+        <div className="todo-input-row"><input className="todo-input" value={input} onChange={e => setInput(e.target.value)} onKeyDown={e => e.key === "Enter" && add()} placeholder="Ex: Leçon sur la Renaissance italienne…" /><button className="btn bp" onClick={add} disabled={!input.trim()}>Ajouter</button></div>
+        <div style={{ display: "flex", gap: "16px", flexWrap: "wrap" }}>
+          <div><div style={{ fontSize: "11px", fontFamily: "var(--fm)", color: "var(--ink-f)", textTransform: "uppercase", letterSpacing: ".06em", marginBottom: "6px" }}>Priorité</div><div style={{ display: "flex", gap: "6px" }}>{PRIOS.map(p => (<button key={p.key} className="todo-p-btn" style={{ borderColor: p.color, color: prio === p.key ? "#fff" : p.color, background: prio === p.key ? p.color : "transparent" }} onClick={() => setPrio(p.key)}>{p.label}</button>))}</div></div>
+          <div><div style={{ fontSize: "11px", fontFamily: "var(--fm)", color: "var(--ink-f)", textTransform: "uppercase", letterSpacing: ".06em", marginBottom: "6px" }}>Catégorie</div><div style={{ display: "flex", gap: "5px", flexWrap: "wrap" }}>{CATS.map(c => (<button key={c} className={`todo-cat ${cat === c ? "on" : ""}`} onClick={() => setCat(cat === c ? "" : c)}>{c}</button>))}</div></div>
         </div>
       </div>
-      {items.length>0&&(<div className="progress-section"><div className="progress-label"><span>Idées traitées</span><span>{doneCount}/{items.length}</span></div><div className="progress-track"><div className="progress-fill" style={{width:`${items.length?(doneCount/items.length)*100:0}%`}} /></div></div>)}
-      <div className="chips">{[["all","Tout"],["todo","À faire"],["done","Fait"]].map(([k,l])=>(<div key={k} className={`chip ${filter===k?"on":""}`} onClick={()=>setFilter(k)}>{l} <span className="chip-n">{k==="all"?items.length:k==="done"?doneCount:items.length-doneCount}</span></div>))}{CATS.map(c=>(<div key={c} className={`chip ${filter===c?"on":""}`} onClick={()=>setFilter(filter===c?"all":c)}>{c} <span className="chip-n">{items.filter(i=>i.category===c).length}</span></div>))}</div>
-      {filtered.length===0?(<div style={{textAlign:"center",padding:"40px",color:"var(--ink-f)"}}><div style={{fontSize:"40px",marginBottom:"12px"}}>✨</div><div>Aucune idée ici. Ajoutez-en une ci-dessus !</div></div>):(
-        <div className="todo-list">{filtered.sort((a,b)=>{const po={high:0,medium:1,low:2};if(a.done!==b.done)return a.done?1:-1;return(po[a.priority]??1)-(po[b.priority]??1);}).map(item=>{const p=PRIOS.find(p=>p.key===item.priority);return(<div key={item.id} className={`todo-item ${item.done?"done":""}`}><div className={`todo-cb ${item.done?"checked":""}`} onClick={()=>toggle(item.id)}>{item.done&&<span style={{color:"#fff",fontSize:"12px"}}>✓</span>}</div><div style={{flex:1}}><div className="todo-text">{item.text}</div><div style={{display:"flex",gap:"8px",marginTop:"5px",flexWrap:"wrap",alignItems:"center"}}>{item.category&&<span style={{fontSize:"11px",fontFamily:"var(--fm)",color:"var(--ink-f)",background:"var(--parch-d)",padding:"2px 7px",borderRadius:"10px"}}>{item.category}</span>}{p&&<span style={{fontSize:"11px",color:p.color,fontFamily:"var(--fm)"}}>{p.label}</span>}<span className="todo-meta">{new Date(item.createdAt).toLocaleDateString("fr")}</span></div></div><button className="todo-del" onClick={()=>del(item.id)}>✕</button></div>);})}</div>
+      {items.length > 0 && (<div className="progress-section"><div className="progress-label"><span>Idées traitées</span><span>{doneCount}/{items.length}</span></div><div className="progress-track"><div className="progress-fill" style={{ width: `${items.length ? (doneCount / items.length) * 100 : 0}%` }} /></div></div>)}
+      <div className="chips">{[["all", "Tout"], ["todo", "À faire"], ["done", "Fait"]].map(([k, l]) => (<div key={k} className={`chip ${filter === k ? "on" : ""}`} onClick={() => setFilter(k)}>{l} <span className="chip-n">{k === "all" ? items.length : k === "done" ? doneCount : items.length - doneCount}</span></div>))}{CATS.map(c => (<div key={c} className={`chip ${filter === c ? "on" : ""}`} onClick={() => setFilter(filter === c ? "all" : c)}>{c} <span className="chip-n">{items.filter(i => i.category === c).length}</span></div>))}</div>
+      {filtered.length === 0 ? (<div style={{ textAlign: "center", padding: "40px", color: "var(--ink-f)" }}><div style={{ fontSize: "40px", marginBottom: "12px" }}>✨</div><div>Aucune idée ici. Ajoutez-en une ci-dessus !</div></div>) : (
+        <div className="todo-list">{filtered.sort((a, b) => { const po = { high: 0, medium: 1, low: 2 }; if (a.done !== b.done) return a.done ? 1 : -1; return (po[a.priority] ?? 1) - (po[b.priority] ?? 1); }).map(item => { const p = PRIOS.find(p => p.key === item.priority); return (<div key={item.id} className={`todo-item ${item.done ? "done" : ""}`}><div className={`todo-cb ${item.done ? "checked" : ""}`} onClick={() => toggle(item.id)}>{item.done && <span style={{ color: "#fff", fontSize: "12px" }}>✓</span>}</div><div style={{ flex: 1 }}><div className="todo-text">{item.text}</div><div style={{ display: "flex", gap: "8px", marginTop: "5px", flexWrap: "wrap", alignItems: "center" }}>{item.category && <span style={{ fontSize: "11px", fontFamily: "var(--fm)", color: "var(--ink-f)", background: "var(--parch-d)", padding: "2px 7px", borderRadius: "10px" }}>{item.category}</span>}{p && <span style={{ fontSize: "11px", color: p.color, fontFamily: "var(--fm)" }}>{p.label}</span>}<span className="todo-meta">{new Date(item.createdAt).toLocaleDateString("fr")}</span></div></div><button className="todo-del" onClick={() => del(item.id)}>✕</button></div>); })}</div>
       )}
     </div>
   );
 }
 
-function SaveTab({ data, lessons, onImportProgress, showToast }) {
+// ── FEATURE 2 : Delete source files + reset progress per source ────────────
+function SaveTab({ data, lessons, onImportProgress, onDeleteSource, onResetProgress, showToast }) {
   const progRef = useRef();
-  const handleProgImport=f=>{if(!f)return;const r=new FileReader();r.onload=e=>{try{const updated=importProgress(e.target.result,data);onImportProgress(updated);showToast("✓ Progression importée !");}catch(err){showToast(`✗ ${err.message}`);}};r.readAsText(f);};
-  const readCount=Object.keys(data.read).length;
-  const totalQ=Object.values(data.scores).reduce((s,v)=>s+(v.total??0),0);
-  const totalC=Object.values(data.scores).reduce((s,v)=>s+(v.correct??0),0);
-  const pct=totalQ>0?Math.round((totalC/totalQ)*100):0;
-  const sources=[...new Set(lessons.map(l=>l._source))];
-  return(
+  const [confirmDelete, setConfirmDelete] = useState(null);
+  const [confirmReset, setConfirmReset] = useState(null);
+
+  const handleProgImport = f => {
+    if (!f) return;
+    const r = new FileReader();
+    r.onload = e => { try { const updated = importProgress(e.target.result, data); onImportProgress(updated); showToast("✓ Progression importée !"); } catch (err) { showToast(`✗ ${err.message}`); } };
+    r.readAsText(f);
+  };
+
+  const readCount = Object.keys(data.read).length;
+  const totalQ = Object.values(data.scores).reduce((s, v) => s + (v.total ?? 0), 0);
+  const totalC = Object.values(data.scores).reduce((s, v) => s + (v.correct ?? 0), 0);
+  const pct = totalQ > 0 ? Math.round((totalC / totalQ) * 100) : 0;
+  const sources = [...new Set(lessons.map(l => l._source))];
+
+  return (
     <div>
       <h2 className="stitle">💾 Sauvegarde & Progression</h2>
-      <p className="ssub">Exportez votre progression pour la sauvegarder sur votre cloud ou la transférer entre appareils.</p>
-      <div className="stats"><div className="sc"><div className="sn">{readCount}</div><div className="sl">Leçons lues</div></div><div className="sc"><div className="sn">{totalQ}</div><div className="sl">Questions</div></div><div className="sc"><div className="sn" style={{color:pct>=70?"var(--em)":pct>=40?"#a07010":"var(--crim)"}}>{pct}%</div><div className="sl">Score global</div></div></div>
-      {data.quizHistory?.length>0&&(<div className="panel"><h3>📊 Historique des quiz</h3><p>Vos dernières sessions</p>{data.quizHistory.slice(-8).reverse().map((h,i)=>(<div key={i} className="score-row"><span style={{fontSize:"12px",color:"var(--ink-f)",width:"75px",flexShrink:0}}>{new Date(h.date).toLocaleDateString("fr")}</span><span style={{flex:1,fontSize:"13px",overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{h.scope}</span><div className="score-bar-wrap"><div className="score-bar" style={{width:`${Math.round((h.correct/h.total)*100)}%`}} /></div><span className="score-pct">{h.correct}/{h.total}</span></div>))}</div>)}
+      <p className="ssub">Exportez votre progression pour la sauvegarder ou la transférer entre appareils.</p>
+      <div className="stats">
+        <div className="sc"><div className="sn">{readCount}</div><div className="sl">Leçons lues</div></div>
+        <div className="sc"><div className="sn">{totalQ}</div><div className="sl">Questions</div></div>
+        <div className="sc"><div className="sn" style={{ color: pct >= 70 ? "var(--em)" : pct >= 40 ? "#a07010" : "var(--crim)" }}>{pct}%</div><div className="sl">Score global</div></div>
+      </div>
+
+      {/* Feature 2 — Manage course files */}
+      {sources.length > 0 && (
+        <div className="panel">
+          <h3>📂 Gérer les fichiers de cours</h3>
+          <p>Supprimez un fichier de cours ou réinitialisez uniquement son avancement (leçons lues et scores).</p>
+          {sources.map(src => {
+            const srcLessons = lessons.filter(l => l._source === src);
+            const count = srcLessons.length;
+            const srcReadCount = srcLessons.filter(l => !!data.read[l.ID]).length;
+            const srcScoreKeys = srcLessons.flatMap(l => (l.Quiz ?? []).map(q => `${l.ID}::${q.Texte}`));
+            const srcAnswered = srcScoreKeys.filter(k => data.scores[k]?.total > 0).length;
+            return (
+              <div key={src}>
+                <div className="del-row">
+                  <div style={{ flex: 1, minWidth: 0 }}>
+                    <div style={{ fontWeight: "600", fontSize: "14px", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>📄 {src}</div>
+                    <div style={{ fontSize: "12px", color: "var(--ink-f)", marginTop: "3px" }}>{count} leçons · {srcReadCount} lues · {srcAnswered} questions répondues</div>
+                  </div>
+                  <div style={{ display: "flex", gap: "8px", flexShrink: 0, flexWrap: "wrap" }}>
+                    <button className="btn bs" style={{ background: "rgba(201,168,76,.1)", color: "#7a5c00", border: "1.5px solid rgba(201,168,76,.3)" }} onClick={() => { setConfirmReset(src); setConfirmDelete(null); }}>↺ Réinitialiser</button>
+                    <button className="btn btn-danger bs" onClick={() => { setConfirmDelete(src); setConfirmReset(null); }}>✕ Supprimer</button>
+                  </div>
+                </div>
+                {confirmDelete === src && (
+                  <div className="confirm-box">
+                    <span style={{ flex: 1 }}>⚠️ Supprimer <strong>{src}</strong> ({count} leçons) ? L'avancement lié sera aussi supprimé.</span>
+                    <button className="btn btn-danger bs" onClick={() => { onDeleteSource(src); setConfirmDelete(null); showToast(`✓ "${src}" supprimé`); }}>Confirmer</button>
+                    <button className="btn bg bs" onClick={() => setConfirmDelete(null)}>Annuler</button>
+                  </div>
+                )}
+                {confirmReset === src && (
+                  <div className="confirm-box" style={{ background: "rgba(201,168,76,.06)", borderColor: "rgba(201,168,76,.3)" }}>
+                    <span style={{ flex: 1 }}>↺ Réinitialiser l'avancement de <strong>{src}</strong> ? ({srcReadCount} leçons lues + {srcAnswered} scores effacés, les leçons restent.)</span>
+                    <button className="btn bp bs" onClick={() => { onResetProgress(src); setConfirmReset(null); showToast(`✓ Avancement de "${src}" réinitialisé`); }}>Confirmer</button>
+                    <button className="btn bg bs" onClick={() => setConfirmReset(null)}>Annuler</button>
+                  </div>
+                )}
+              </div>
+            );
+          })}
+        </div>
+      )}
+
+      {data.quizHistory?.length > 0 && (<div className="panel"><h3>📊 Historique des quiz</h3><p>Vos dernières sessions</p>{data.quizHistory.slice(-8).reverse().map((h, i) => (<div key={i} className="score-row"><span style={{ fontSize: "12px", color: "var(--ink-f)", width: "75px", flexShrink: 0 }}>{new Date(h.date).toLocaleDateString("fr")}</span><span style={{ flex: 1, fontSize: "13px", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{h.scope}</span><div className="score-bar-wrap"><div className="score-bar" style={{ width: `${Math.round((h.correct / h.total) * 100)}%` }} /></div><span className="score-pct">{h.correct}/{h.total}</span></div>))}</div>)}
+
       <div className="panel">
         <h3>📤 Exporter ma progression</h3>
-        <p>Télécharge un fichier <code>.json</code> avec votre progression complète : leçons lues, scores, notes personnelles, liste d'idées. Sauvegardez-le sur Google Drive / iCloud / Dropbox.</p>
-        <div className="info-box"><strong>Ce fichier contient</strong>{readCount} leçon{readCount!==1?"s":""} lue{readCount!==1?"s":""} · {totalQ} réponses · {Object.values(data.notes??{}).filter(Boolean).length} notes · {(data.todoItems??[]).length} idées</div>
-        <div className="panel-row"><button className="btn bp" onClick={()=>exportProgress(data)}>⬇ Télécharger la progression (.json)</button></div>
+        <p>Télécharge un fichier <code>.json</code> avec votre progression complète. Sauvegardez-le sur Google Drive / iCloud / Dropbox.</p>
+        <div className="info-box"><strong>Ce fichier contient</strong>{readCount} leçon{readCount !== 1 ? "s" : ""} lue{readCount !== 1 ? "s" : ""} · {totalQ} réponses · {Object.values(data.notes ?? {}).filter(Boolean).length} notes · {(data.todoItems ?? []).length} idées</div>
+        <button className="btn bp" onClick={() => exportProgress(data)}>⬇ Télécharger la progression (.json)</button>
       </div>
+
       <div className="panel">
         <h3>📥 Importer une progression</h3>
         <p>Rechargez un fichier exporté précédemment. Vos leçons chargées sont conservées — seule la progression est mise à jour.</p>
-        <div className="info-box" style={{background:"rgba(155,35,53,.06)",borderColor:"rgba(155,35,53,.2)"}}><strong style={{color:"var(--crim)"}}>⚠ Attention</strong>L'import écrasera votre progression actuelle. Exportez d'abord si besoin.</div>
-        <div className="panel-row"><label className="btn bo" style={{cursor:"pointer"}}>⬆ Importer une progression (.json)<input ref={progRef} type="file" accept=".json" style={{display:"none"}} onChange={e=>{handleProgImport(e.target.files[0]);e.target.value="";}} /></label></div>
+        <div className="info-box" style={{ background: "rgba(155,35,53,.06)", borderColor: "rgba(155,35,53,.2)" }}><strong style={{ color: "var(--crim)" }}>⚠ Attention</strong>L'import écrasera votre progression actuelle. Exportez d'abord si besoin.</div>
+        <label className="btn bo" style={{ cursor: "pointer" }}>⬆ Importer une progression (.json)<input ref={progRef} type="file" accept=".json" style={{ display: "none" }} onChange={e => { handleProgImport(e.target.files[0]); e.target.value = ""; }} /></label>
       </div>
+
       <div className="panel">
-        <h3>☁️ Synchronisation cloud (méthode recommandée)</h3>
-        <ol style={{paddingLeft:"20px",lineHeight:"2",fontSize:"14px",color:"var(--ink-f)"}}>
+        <h3>☁️ Synchronisation cloud</h3>
+        <ol style={{ paddingLeft: "20px", lineHeight: "2", fontSize: "14px", color: "var(--ink-f)" }}>
           <li>Exportez votre progression (bouton ci-dessus)</li>
           <li>Placez le <code>.json</code> dans Google Drive / iCloud / Dropbox</li>
           <li>Sur l'autre appareil, importez vos fichiers <code>.txt</code> de leçons</li>
           <li>Importez votre <code>.json</code> de progression</li>
         </ol>
-        <div style={{marginTop:"14px",padding:"12px 16px",background:"var(--parch-d)",borderRadius:"var(--r)",fontSize:"13px",color:"var(--ink-f)"}}>💡 <strong>Astuce :</strong> Les fichiers <code>.txt</code> de leçons ne changent pas — seul le <code>.json</code> de progression doit être synchronisé.</div>
+        <div style={{ marginTop: "14px", padding: "12px 16px", background: "var(--parch-d)", borderRadius: "var(--r)", fontSize: "13px", color: "var(--ink-f)" }}>💡 Les fichiers <code>.txt</code> de leçons ne changent pas — seul le <code>.json</code> de progression doit être synchronisé.</div>
       </div>
-      {sources.length>0&&(<div className="panel"><h3>📂 Fichiers chargés cette session</h3><p>Rechargez-les à chaque visite (ils ne sont pas sauvegardés dans le <code>.json</code> de progression).</p>{sources.map(s=>(<div key={s} className="score-row"><span style={{fontSize:"14px"}}>📄</span><span style={{flex:1,fontSize:"13px"}}>{s}</span><span className="tag">{lessons.filter(l=>l._source===s).length} leçons</span></div>))}</div>)}
     </div>
   );
 }
 
+// ── ROOT ───────────────────────────────────────────────────────────────────
 export default function CultureMaster() {
   const [data, setData] = useState(loadData);
   const [tab, setTab] = useState("learn");
   const [toast, setToast] = useState(null);
-  const showToast=msg=>setToast(msg);
-  const persist=d=>{saveData(d);setData(d);};
-  const handleImport=(content,fileName)=>{try{const n=parseFile(content,fileName);const e=data.lessons.filter(l=>l._source!==fileName);persist({...data,lessons:[...e,...n]});showToast(`✓ ${n.length} leçon(s) depuis "${fileName}"`);}catch(err){showToast(`✗ ${err.message}`);}};
-  const handleMarkRead=id=>{persist({...data,read:{...data.read,[id]:Date.now()}});showToast("✓ Leçon marquée comme lue");};
-  const handleUpdateScore=(key,correct)=>persist({...data,scores:{...data.scores,[key]:updateSM2(data.scores[key],correct)}});
-  const handleAddHistory=entry=>persist({...data,quizHistory:[...(data.quizHistory??[]),entry].slice(-50)});
-  const handleNoteChange=(id,text)=>persist({...data,notes:{...data.notes,[id]:text}});
-  const handleTodoUpdate=items=>persist({...data,todoItems:items});
-  const handleImportProgress=updated=>persist(updated);
-  const totalQ=Object.values(data.scores).reduce((s,v)=>s+(v.total??0),0);
-  const todoLeft=(data.todoItems??[]).filter(i=>!i.done).length;
-  const TABS=[{id:"learn",label:"Apprendre",icon:"📖"},{id:"revise",label:"Réviser",icon:"🃏"},{id:"quiz",label:"Quiz",icon:"🎯"},{id:"todo",label:"Idées",icon:"💡",badge:todoLeft||null},{id:"save",label:"Sauvegarder",icon:"💾"}];
-  return(
+  const showToast = msg => setToast(msg);
+  const persist = d => { saveData(d); setData(d); };
+
+  const handleImport = (content, fileName) => {
+    try { const n = parseFile(content, fileName); const e = data.lessons.filter(l => l._source !== fileName); persist({ ...data, lessons: [...e, ...n] }); showToast(`✓ ${n.length} leçon(s) depuis "${fileName}"`); }
+    catch (err) { showToast(`✗ ${err.message}`); }
+  };
+  const handleMarkRead = id => { persist({ ...data, read: { ...data.read, [id]: Date.now() } }); showToast("✓ Leçon marquée comme lue"); };
+  const handleUpdateScore = (key, correct) => persist({ ...data, scores: { ...data.scores, [key]: updateSM2(data.scores[key], correct) } });
+  const handleAddHistory = entry => persist({ ...data, quizHistory: [...(data.quizHistory ?? []), entry].slice(-50) });
+  const handleNoteChange = (id, text) => persist({ ...data, notes: { ...data.notes, [id]: text } });
+  const handleTodoUpdate = items => persist({ ...data, todoItems: items });
+  const handleImportProgress = updated => persist(updated);
+
+  // Feature 2a: delete all lessons from a source + their linked progress
+  const handleDeleteSource = src => {
+    const remaining = data.lessons.filter(l => l._source !== src);
+    const deletedIds = data.lessons.filter(l => l._source === src).map(l => l.ID);
+    const newRead = { ...data.read }; const newScores = { ...data.scores }; const newNotes = { ...data.notes };
+    deletedIds.forEach(id => {
+      delete newRead[id]; delete newNotes[id];
+      Object.keys(newScores).forEach(k => { if (k.startsWith(`${id}::`)) delete newScores[k]; });
+    });
+    persist({ ...data, lessons: remaining, read: newRead, scores: newScores, notes: newNotes });
+  };
+
+  // Feature 2b: reset progress for a source (keep lessons)
+  const handleResetProgress = src => {
+    const srcIds = data.lessons.filter(l => l._source === src).map(l => l.ID);
+    const newRead = { ...data.read }; const newScores = { ...data.scores };
+    srcIds.forEach(id => {
+      delete newRead[id];
+      Object.keys(newScores).forEach(k => { if (k.startsWith(`${id}::`)) delete newScores[k]; });
+    });
+    persist({ ...data, read: newRead, scores: newScores });
+  };
+
+  const totalQ = Object.values(data.scores).reduce((s, v) => s + (v.total ?? 0), 0);
+  const todoLeft = (data.todoItems ?? []).filter(i => !i.done).length;
+  const TABS = [
+    { id: "learn", label: "Apprendre", icon: "📖" },
+    { id: "revise", label: "Réviser", icon: "🃏" },
+    { id: "quiz", label: "Quiz", icon: "🎯" },
+    { id: "todo", label: "Idées", icon: "💡", badge: todoLeft || null },
+    { id: "save", label: "Sauvegarder", icon: "💾" },
+  ];
+
+  return (
     <><style>{STYLES}</style>
-    <div className="app">
-      <header className="hdr">
-        <div className="logo">🏛 CultureMaster</div>
-        <div className="hdr-right"><div className="badge">📚 {data.lessons.length} leçons</div><div className="badge">✎ {totalQ} rép.</div></div>
-      </header>
-      <nav className="nav">{TABS.map(t=>(<button key={t.id} className={`nb ${tab===t.id?"on":""}`} onClick={()=>setTab(t.id)}>{t.icon} {t.label}{t.badge?<span style={{background:"var(--crim)",color:"#fff",borderRadius:"10px",padding:"1px 6px",fontSize:"10px",fontFamily:"var(--fm)"}}>{t.badge}</span>:null}</button>))}</nav>
-      <main className="main">
-        {tab==="learn"&&<LearnTab lessons={data.lessons} read={data.read} notes={data.notes??{}} onMarkRead={handleMarkRead} onImport={handleImport} onNoteChange={handleNoteChange}/>}
-        {tab==="revise"&&<ReviseTab lessons={data.lessons}/>}
-        {tab==="quiz"&&<QuizTab lessons={data.lessons} scores={data.scores} quizHistory={data.quizHistory??[]} onUpdateScore={handleUpdateScore} onAddHistory={handleAddHistory}/>}
-        {tab==="todo"&&<TodoTab items={data.todoItems??[]} onUpdate={handleTodoUpdate}/>}
-        {tab==="save"&&<SaveTab data={data} lessons={data.lessons} onImportProgress={handleImportProgress} showToast={showToast}/>}
-      </main>
-      {toast&&<Toast msg={toast} onDone={()=>setToast(null)}/>}
-    </div></>
+      <div className="app">
+        <header className="hdr">
+          <div className="logo">🏛 CultureMaster</div>
+          <div className="hdr-right"><div className="badge">📚 {data.lessons.length} leçons</div><div className="badge">✎ {totalQ} rép.</div></div>
+        </header>
+        <nav className="nav">{TABS.map(t => (<button key={t.id} className={`nb ${tab === t.id ? "on" : ""}`} onClick={() => setTab(t.id)}>{t.icon} {t.label}{t.badge ? <span style={{ background: "var(--crim)", color: "#fff", borderRadius: "10px", padding: "1px 6px", fontSize: "10px", fontFamily: "var(--fm)" }}>{t.badge}</span> : null}</button>))}</nav>
+        <main className="main">
+          {tab === "learn" && <LearnTab lessons={data.lessons} read={data.read} notes={data.notes ?? {}} onMarkRead={handleMarkRead} onImport={handleImport} onNoteChange={handleNoteChange} />}
+          {tab === "revise" && <ReviseTab lessons={data.lessons} />}
+          {tab === "quiz" && <QuizTab lessons={data.lessons} read={data.read} scores={data.scores} quizHistory={data.quizHistory ?? []} onUpdateScore={handleUpdateScore} onAddHistory={handleAddHistory} />}
+          {tab === "todo" && <TodoTab items={data.todoItems ?? []} onUpdate={handleTodoUpdate} />}
+          {tab === "save" && <SaveTab data={data} lessons={data.lessons} onImportProgress={handleImportProgress} onDeleteSource={handleDeleteSource} onResetProgress={handleResetProgress} showToast={showToast} />}
+        </main>
+        {toast && <Toast msg={toast} onDone={() => setToast(null)} />}
+      </div>
+    </>
   );
 }
